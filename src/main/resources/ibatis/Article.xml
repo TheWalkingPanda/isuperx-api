@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="Article" type="com.isuperx.domain.Article"/>
+	
+	<resultMap class="Article" id="ArticleMap">
+		<result property="id" column="ID"/>
+		<result property="url" column="URL"/>
+		<result property="title" column="TITLE"/>
+		<result property="author" column="AUTHOR"/>
+		<result property="content" column="CONTENT"/>
+		<result property="introduction" column="INTRODUCTION"/>
+		<result property="articleTime" column="ARTICLE_TIME"/>
+		<result property="createTime" column="CREATE_TIME"/>
+		<result property="state" column="STATE"/>
+	</resultMap>
+	
+	<insert id="saveArticle" parameterClass="Article">
+		INSERT INTO ARTICLE (ID,   URL,   TITLE,   AUTHOR,   CONTENT,   INTRODUCTION,   ARTICLE_TIME,  CREATE_TIME,  STATE)
+					VALUES	(#id#, #url#, #title#, #author#, #content#, #introduction#, #articleTime#, #createTime#, #state#)
+		<selectKey resultClass="int" keyProperty="id">
+			SELECT @@IDENTITY
+			AS id
+		</selectKey>
+	</insert>
+	
+	<select id="getAllArticleURL" resultClass="string">
+		SELECT URL
+		FROM ARTICLE
+		WHERE STATE='U'
+	</select>
+	
+</sqlMap>

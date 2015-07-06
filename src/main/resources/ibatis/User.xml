@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="User" type="com.isuperx.domain.User"/>
+	
+	<resultMap class="User" id="UserMap">
+		<result property="id" column="ID"/>
+		<result property="username" column="USERNAME"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="email" 	column="EMAIL"/>
+		<result property="sex" 		column="SEX"/>
+		<result property="state" 	column="STATE"/>
+	</resultMap>
+	
+	<insert id="saveUser" parameterClass="User">
+		INSERT INTO USER  (ID,    USERNAME,   PASSWORD,  EMAIL,	  SEX,	STATE) 
+					VALUES(#id#, #username#, #password#, #email#, #sex#,#state#)
+		<selectKey resultClass="int" keyProperty="id">
+			SELECT @@IDENTITY
+			AS id
+		</selectKey>
+	</insert>
+	
+	<update id="delUser" parameterClass="long">
+		UPDATE 	USER
+		SET		STATE	 = 'E'
+		WHERE	ID=#id#
+	</update>
+	
+	<update id="updateUser" parameterClass="User">
+		UPDATE 	USER
+		SET		USERNAME = #username#,
+				PASSWORD = #password#,
+				EMAIL	 = #email#,
+				SEX		 = #sex#,
+				STATE	 = #state#
+				
+		WHERE	ID=#id#
+	</update>
+	
+	<select id="getUserById" parameterClass="long" resultMap="UserMap">
+		SELECT ID, USERNAME, PASSWORD, EMAIL, SEX, STATE
+		FROM USER
+		WHERE ID = #id#
+	</select>
+	
+	<select id="getUsersByParam" parameterClass="User" resultMap="UserMap">
+		SELECT ID, USERNAME, PASSWORD, EMAIL, SEX, STATE
+		FROM USER
+		<dynamic prepend="WHERE">
+			<isNotEqual prepend="AND" property="id" compareValue="0">
+				ID=#id#
+			</isNotEqual>
+			<isNotNull prepend="AND" property="username">
+				USERNAME=#username#
+			</isNotNull>
+			<isNotNull prepend="AND" property="password">
+				PASSWORD=#password#
+			</isNotNull>
+			<isNotNull prepend="AND" property="email">
+				EMAIL=#email#
+			</isNotNull>
+			<isNotNull prepend="AND" property="sex">
+				SEX=#sex#
+			</isNotNull>
+		</dynamic>
+	</select>
+	
+</sqlMap>
