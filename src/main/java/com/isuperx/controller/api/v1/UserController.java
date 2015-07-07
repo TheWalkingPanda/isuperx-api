@@ -1,11 +1,7 @@
 package com.isuperx.controller.api.v1;
 
-import net.sf.json.JSONObject;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.JsonParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -28,7 +24,7 @@ public class UserController {
 	
 	@RequestMapping(value="/{userId}", method=RequestMethod.GET)
 	@ResponseBody
-	public JSONObject getUser(@PathVariable("userId") long userId){
+	public Return getUser(@PathVariable("userId") long userId) {
 		Return ret = new Return();
 		
 		try {
@@ -37,16 +33,18 @@ public class UserController {
 				ret.setSuccess(true);
 				ret.setStatusCode(HttpStatus.OK);
 				ret.setData(user);
+			}else{
+				ret.setSuccess(true);
+				ret.setStatusCode(HttpStatus.OK);
+				ret.setMessage("说");
+				ret.setData(user);
 			}
-			ret.setSuccess(true);
-			ret.setStatusCode(HttpStatus.OK);
 		} catch (Exception e) {
 			log.error(e);
 			ret.setSuccess(false);
 			ret.setStatusCode(HttpStatus.OK);
 			ret.setData(e);
 		}
-		System.out.println(JSONObject.fromObject(ret));
-		return JSONObject.fromObject(ret);
+		return ret;
 	}
 }
