@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,9 +27,6 @@ public class UserController {
 	@Autowired
 	private IUserSV userSV;
 	
-	/**
-	 * 增加一个user
-	 */
 	@RequestMapping(value="/users", method=RequestMethod.POST)
 	@ResponseBody
 	public Return addUser(HttpServletRequest request){
@@ -60,9 +56,6 @@ public class UserController {
 		return ret;
 	}
 	
-	/**
-	 * 根据userId获得user
-	 */
 	@RequestMapping(value="/users/{userId}", method=RequestMethod.GET)
 	@ResponseBody
 	public Return getUser(@PathVariable("userId") long userId) {

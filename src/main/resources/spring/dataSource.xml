@@ -10,11 +10,21 @@
 							http://www.springframework.org/schema/tx
 							http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 							
-		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="driverClassName" value="${jdbc.driver}" />
-			<property name="url" value="${jdbc.url}" />
-			<property name="username" value="${jdbc.username}" />
+		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+			<property name="driverClass" value="${jdbc.driver}" />
+			<property name="jdbcUrl" value="${jdbc.url}" />
+			<property name="user" value="${jdbc.username}" />
 			<property name="password" value="${jdbc.password}" />
+			<property name="minPoolSize" value="${jdbc.miniPoolSize}" />
+			<property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+			<property name="initialPoolSize" value="${jdbc.initialPoolSize}" />
+			<property name="maxIdleTime" value="${jdbc.maxIdleTime}" />
+			<property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
+			<property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}" />
+			<property name="acquireRetryDelay" value="${jdbc.acquireRetryDelay}" />
+			<property name="testConnectionOnCheckin" value="${jdbc.testConnectionOnCheckin}" />
+			<property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}" />
+			<property name="checkoutTimeout" value="${jdbc.checkoutTimeout}" />
 		</bean>
 		
 		<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">

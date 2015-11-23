@@ -9,18 +9,12 @@
 							http://www.springframework.org/schema/context/spring-context-3.0.xsd
 							http://www.springframework.org/schema/aop
 							http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-							
+	
+	
 	<import resource="dataSource.xml"/>
 	<import resource="memcached.xml"/>
 	
-	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:properties/jdbc.properties</value>
-				<value>classpath:properties/memcached.properties</value>
-			</list>
-		</property>
-	</bean>
+	<context:property-placeholder location="classpath:properties/*.properties"/>
 	
 	<context:annotation-config />
 	<context:component-scan base-package="com.isuperx" />
