@@ -1,4 +1,4 @@
-package com.isuperx.domain;
+package com.isuperx.common.domain;
 
 import com.isuperx.common.domain.BaseBean;
 

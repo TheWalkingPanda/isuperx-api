@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.isuperx.domain.User;
+import com.isuperx.common.domain.User;
 import com.isuperx.service.interfaces.IUserSV;
 import com.isuperx.util.Return;
 

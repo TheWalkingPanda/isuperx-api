@@ -3,5 +3,4 @@
     "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 <sqlMapConfig>
 	<sqlMap resource="ibatis/User.xml"/>
-	<!-- <sqlMap resource="ibatis/Article.xml"/> -->
 </sqlMapConfig>
