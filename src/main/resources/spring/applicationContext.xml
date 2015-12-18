@@ -11,6 +11,7 @@
 							http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	
 	
+	<import resource="spring-dubbo.xml"/>
 	<import resource="dataSource.xml"/>
 	
 	<context:property-placeholder location="classpath:properties/*.properties"/>

@@ -1,6 +1,8 @@
 package com.isuperx.domain;
 
-public class User {
+import com.isuperx.common.domain.BaseBean;
+
+public class User extends BaseBean {
 	private long id;
 	private String username;
 	private String password;
