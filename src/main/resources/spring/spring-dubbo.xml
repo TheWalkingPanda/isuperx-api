@@ -13,7 +13,8 @@
 		 check注册中心不存在时，是否报错
 		 register是否向此注册中心注册服务，如果设为false，将只订阅，不注册，默认true
 		 subscribe是否向此注册中心订阅服务，如果设为false，将只注册，不订阅
-		 timeout注册中心请求超时时间(毫秒)  -->
+		 timeout注册中心请求超时时间(毫秒) 
+	 -->
 	<dubbo:registry address="zookeeper://172.16.9.96:2181" check="false" />
 	
 	<!-- interface服务接口的路径
