@@ -8,7 +8,19 @@
         					http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 	
 	<dubbo:application name="isuperx-api" />
+	
+	<!-- address可以Zookeeper集群配置，地址可以多个以逗号隔开
+		 check注册中心不存在时，是否报错
+		 register是否向此注册中心注册服务，如果设为false，将只订阅，不注册，默认true
+		 subscribe是否向此注册中心订阅服务，如果设为false，将只注册，不订阅
+		 timeout注册中心请求超时时间(毫秒)  -->
 	<dubbo:registry address="zookeeper://172.16.9.96:2181" check="false" />
+	
+	<!-- interface服务接口的路径
+		 ref引用对应的实现类的Bean的ID
+		 registry从指定注册中心注册获取服务列表，在多个注册中心时使用，值为<dubbo:registry>的id属性，多个注册中心ID用逗号分隔
+		 loadbalance 负载均衡策略，可选值：random,roundrobin,leastactive，分别表示：随机，轮循，最少活跃调用
+	 -->
 	<dubbo:reference interface="com.isuperx.service.interfaces.IUserSV" id="userSV" />
 	
 </beans>
